@@ -1,11 +1,19 @@
 import React from 'react'
-import Home from "./pages/Home"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import TopRated from './pages/TopRated';
+import Upcoming from './pages/Upcoming'
 
 const App = () => {
   return (
-    <div>
-      <Home/>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/home' element={<Home />} />
+        <Route path='/toprated' element={<TopRated />} />
+        <Route path='/upcoming' element={<Upcoming/>} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

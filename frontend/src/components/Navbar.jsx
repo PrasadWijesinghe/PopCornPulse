@@ -1,5 +1,5 @@
 import React from "react";
-
+import {Link} from "react-router-dom"
 const Navbar = () => (
   <nav className="w-full fixed top-0 left-0 z-20 bg-black/40 backdrop-blur-md border-b border-white/10">
     <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
@@ -9,8 +9,9 @@ const Navbar = () => (
       </div>
       {/* Nav Links */}
       <div className="flex gap-8">
-        <a href="#" className="text-white/90 hover:text-white text-lg md:text-xl transition">Features</a>
-        <a href="#" className="text-white/90 hover:text-white text-lg md:text-xl transition">Customers</a>
+        <Link  to="/home" className="text-white/90 hover:text-white text-lg md:text-xl transition">Popular</Link>
+        <Link  to="/toprated" className="text-white/90 hover:text-white text-lg md:text-xl transition">Top Rated</Link>
+        <Link to="/upcoming" className="text-white/90 hover:text-white text-lg md:text-xl transition">Upcoming</Link>
         <a href="#" className="text-white/90 hover:text-white text-lg md:text-xl transition">Integrations</a>
       </div>
       {/* Button */}

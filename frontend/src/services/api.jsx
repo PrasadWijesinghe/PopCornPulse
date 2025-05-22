@@ -32,3 +32,35 @@ export const getPopularMovies = async (page = 1) => {
     throw error;
   }
 };
+
+export const getTopratedMovies = async (page = 1) => {
+  try {
+    const response = await api.get('/movie/top_rated', {
+      params: {
+        language: 'en-US',
+        page,
+        include_adult: false,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching top rated movies:', error);
+    throw error;
+  }
+};
+
+export const getUpcomingMovies = async (page = 1) => {
+  try {
+    const response = await api.get('/movie/upcoming', {
+      params: {
+        language: 'en-US',
+        page,
+        include_adult: false,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching Upcoming movies:', error);
+    throw error;
+  }
+};

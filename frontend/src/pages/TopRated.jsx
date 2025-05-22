@@ -1,26 +1,29 @@
-"use client";
-
-import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
+import { getTopratedMovies } from "../services/api";
 import MovieCard from "../components/MovieCard";
+import Navbar from "../components/Navbar"; // Optional, for consistency
 import SearchBar from "../components/SearchBar";
-import { getPopularMovies } from "../services/api";
+import { motion } from "framer-motion";
 
-function Home() {
+const TopRated = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
 
+
+  const handleSearch = () => {
+    
+  };
+
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const data = await getPopularMovies();
+        const data = await getTopratedMovies();
         setMovies(data.results);
         setLoading(false);
       } catch (err) {
-        setError('Failed to fetch movies');
+        setError("Failed to fetch movies");
         setLoading(false);
       }
     };
@@ -28,16 +31,9 @@ function Home() {
     fetchMovies();
   }, []);
 
-  // Optionally, implement search logic here
-  const handleSearch = () => {
-    // You can implement search API call here if needed
-    // For now, just filter locally as an example:
-    // setMovies(movies.filter(m => m.title.toLowerCase().includes(search.toLowerCase())));
-  };
-
   return (
     <>
-      <Navbar />
+      <Navbar /> {/* Optional */}
       <motion.div
         initial={{ opacity: 0.0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -47,14 +43,16 @@ function Home() {
           ease: "easeInOut",
         }}
         className="w-full flex flex-col items-center px-4 pt-24 bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700"
-      >
-        <SearchBar
+      ></motion.div>
+
+      <SearchBar
           value={search}
           onChange={e => setSearch(e.target.value)}
           onSearch={handleSearch}
         />
+      <div className="w-full flex flex-col items-center px-4 pt-24 bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700 min-h-screen">
         <div className="text-2xl md:text-5xl font-bold dark:text-black text-center mb-8 mt-2">
-          Popular Movies
+          Top Rated Movies
         </div>
         {loading && <div className="text-white text-2xl">Loading...</div>}
         {error && <div className="text-red-500 text-2xl">{error}</div>}
@@ -63,9 +61,9 @@ function Home() {
             <MovieCard key={movie.id} movie={movie} />
           ))}
         </div>
-      </motion.div>
+      </div>
     </>
   );
-}
+};
 
-export default Home;
+export default TopRated;
