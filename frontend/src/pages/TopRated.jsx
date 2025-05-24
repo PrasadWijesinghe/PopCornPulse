@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getTopratedMovies } from "../services/api";
 import MovieCard from "../components/MovieCard";
-import Navbar from "../components/Navbar"; // Optional, for consistency
+import Navbar from "../components/Navbar";
 import SearchBar from "../components/SearchBar";
 import { motion } from "framer-motion";
 
@@ -11,9 +11,9 @@ const TopRated = () => {
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
 
-
   const handleSearch = () => {
-    
+    // Optionally implement search logic here
+    // setMovies(movies.filter(m => m.title.toLowerCase().includes(search.toLowerCase())));
   };
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const TopRated = () => {
 
   return (
     <>
-      <Navbar /> {/* Optional */}
+      <Navbar />
       <motion.div
         initial={{ opacity: 0.0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -42,15 +42,13 @@ const TopRated = () => {
           duration: 0.8,
           ease: "easeInOut",
         }}
-        className="w-full flex flex-col items-center px-4 pt-24 bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700"
-      ></motion.div>
-
-      <SearchBar
+        className="w-full flex flex-col items-center px-4 pt-24 bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700 min-h-screen"
+      >
+        <SearchBar
           value={search}
           onChange={e => setSearch(e.target.value)}
           onSearch={handleSearch}
         />
-      <div className="w-full flex flex-col items-center px-4 pt-24 bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700 min-h-screen">
         <div className="text-2xl md:text-5xl font-bold dark:text-black text-center mb-8 mt-2">
           Top Rated Movies
         </div>
@@ -61,7 +59,7 @@ const TopRated = () => {
             <MovieCard key={movie.id} movie={movie} />
           ))}
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };
