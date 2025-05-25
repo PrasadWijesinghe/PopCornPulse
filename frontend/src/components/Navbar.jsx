@@ -12,7 +12,7 @@ const Navbar = () => (
         <Link  to="/home" className="text-white/90 hover:text-white text-lg md:text-xl transition">Popular</Link>
         <Link  to="/toprated" className="text-white/90 hover:text-white text-lg md:text-xl transition">Top Rated</Link>
         <Link to="/upcoming" className="text-white/90 hover:text-white text-lg md:text-xl transition">Upcoming</Link>
-        <a href="#" className="text-white/90 hover:text-white text-lg md:text-xl transition">Integrations</a>
+      
       </div>
       {/* Button */}
       <a
