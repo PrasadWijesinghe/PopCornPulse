@@ -33,13 +33,13 @@ const Upcoming = () => {
   return (
     <>
       <Navbar />
-      <div className="w-full flex flex-col items-center px-4 pt-24 bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700 min-h-screen">
+      <div className="w-full flex flex-col items-center px-4 pt-24 bg-zinc-900 min-h-screen">
         <SearchBar
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           onSearch={handleSearch}
         />
-        <div className="text-2xl md:text-5xl font-bold dark:text-black text-center mb-8 mt-2">
+        <div className="text-2xl md:text-5xl font-bold dark:text-zinc-500 text-center mb-8 mt-2">
           Upcoming Movies
         </div>
         {loading && <div className="text-white text-2xl">Loading...</div>}
