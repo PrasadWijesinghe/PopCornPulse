@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getUpcomingMovies } from "../services/api";
+import { getUpcomingMovies, searchMovies } from "../services/api";
 import MovieCard from "../components/MovieCard";
 import Navbar from "../components/Navbar";
 import SearchBar from "../components/SearchBar";
@@ -25,9 +25,20 @@ const Upcoming = () => {
     fetchMovies();
   }, []);
 
-  const handleSearch = () => {
-    // Optionally implement search logic here
-    // setMovies(movies.filter(m => m.title.toLowerCase().includes(search.toLowerCase())));
+  const handleSearch = async () => {
+    if (!search.trim()) return;
+    try {
+      const data = await searchMovies(search.trim());
+      if (data.results && data.results.length > 0) {
+        setMovies(data.results);
+        setError(null);
+      } else {
+        setMovies([]);
+        setError("No movies found for this search.");
+      }
+    } catch (err) {
+      setError("Failed to search for movies.");
+    }
   };
 
   return (

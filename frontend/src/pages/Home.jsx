@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import MovieCard from "../components/MovieCard";
 import SearchBar from "../components/SearchBar";
-import { getPopularMovies } from "../services/api";
+import { getPopularMovies, searchMovies } from "../services/api";
 
 function Home() {
   const [movies, setMovies] = useState([]);
@@ -29,8 +29,20 @@ function Home() {
   }, []);
 
   
-  const handleSearch = () => {
-    
+  const handleSearch = async () => {
+    if (!search.trim()) return;
+    try {
+      const data = await searchMovies(search.trim());
+      if (data.results && data.results.length > 0) {
+        setMovies(data.results);
+        setError(null);
+      } else {
+        setMovies([]);
+        setError("No movies found for this search.");
+      }
+    } catch (err) {
+      setError("Failed to search for movies.");
+    }
   };
 
   return (

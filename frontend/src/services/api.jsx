@@ -64,3 +64,48 @@ export const getUpcomingMovies = async (page = 1) => {
     throw error;
   }
 };
+
+export const findByExternalId = async (externalId, externalSource = "imdb_id") => {
+  try {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/find/${externalId}`,
+      {
+        params: {
+          external_source: externalSource,
+        },
+        headers: {
+          accept: 'application/json',
+          Authorization: `Bearer ${import.meta.env.VITE_TMDB_BEARER_TOKEN}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error('Error finding by external ID:', error);
+    throw error;
+  }
+};
+
+export const searchMovies = async (query) => {
+  try {
+    const response = await axios.get(
+      'https://api.themoviedb.org/3/search/movie',
+      {
+        params: {
+          language: 'en-US',
+          query,
+          include_adult: false,
+          page: 1,
+        },
+        headers: {
+          accept: 'application/json',
+          Authorization: `Bearer ${import.meta.env.VITE_TMDB_BEARER_TOKEN}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error('Error searching movies:', error);
+    throw error;
+  }
+};
