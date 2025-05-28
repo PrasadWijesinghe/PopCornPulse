@@ -115,7 +115,7 @@ const MovieDetails = () => {
           </motion.button>
         </div>
 
-        {/* Movie Details Section */}
+        
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -157,7 +157,7 @@ const MovieDetails = () => {
           </div>
         </motion.div>
 
-        {/* Movie Images Section */}
+        
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -189,7 +189,7 @@ const MovieDetails = () => {
           )}
         </motion.div>
 
-        {/* Similar Movies Section */}
+    
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -229,7 +229,7 @@ const MovieDetails = () => {
           )}
         </motion.div>
 
-        {/* Reviews Section */}
+        
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

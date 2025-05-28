@@ -10,7 +10,7 @@ const Navbar = () => {
   return (
     <nav className="w-full fixed top-0 left-0 z-20 bg-gradient-to-r from-zinc-900/80 to-blue-900/80 backdrop-blur-lg border-b border-white/10">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-        {/* Logo & Brand */}
+        
         <motion.div
           whileHover={{ scale: 1.05 }}
           className="flex items-center gap-3"
@@ -20,7 +20,7 @@ const Navbar = () => {
           </span>
         </motion.div>
 
-        {/* Nav Links */}
+        
         <div className="hidden md:flex gap-10">
           <Link
             to="/"
@@ -48,7 +48,7 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Mobile Menu Button */}
+        
         <button
           className="md:hidden text-white text-2xl focus:outline-none"
           onClick={() => setIsOpen(!isOpen)}
@@ -57,7 +57,7 @@ const Navbar = () => {
           {isOpen ? "✕" : "☰"}
         </button>
 
-        {/* Mobile Menu */}
+        
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -95,7 +95,7 @@ const Navbar = () => {
           </motion.div>
         )}
 
-        {/* Sign Up Button */}
+        
         <motion.a
           href="#"
           whileHover={{ scale: 1.05 }}

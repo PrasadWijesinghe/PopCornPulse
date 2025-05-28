@@ -51,7 +51,7 @@ function Home() {
 
   const handlePageClick = (pageNumber) => {
     setPage(pageNumber);
-    window.scrollTo({ top: 0, behavior: "smooth" }); // Smooth scroll to top on page change
+    window.scrollTo({ top: 0, behavior: "smooth" }); 
   };
 
   const renderPagination = () => {

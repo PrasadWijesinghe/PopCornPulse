@@ -6,13 +6,13 @@ const FooterNav = () => {
   return (
     <footer className="w-full bg-gradient-to-t from-zinc-900 to-zinc-800 py-8 text-gray-300">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-6 gap-6">
-        {/* Left Section */}
+       
         <div className="text-center md:text-left">
           <h3 className="text-xl font-extrabold text-white tracking-tight">PopcornPulse</h3>
           <p className="text-sm mt-1">Your ultimate movie guide.</p>
         </div>
 
-        {/* Navigation Links */}
+        
         <div className="flex flex-wrap justify-center gap-6">
           <Link
             to="/"
@@ -40,7 +40,7 @@ const FooterNav = () => {
           </Link>
         </div>
 
-        {/* Right Section - Social Media & Copyright */}
+        
         <div className="flex flex-col items-center md:items-end gap-4">
           <div className="flex gap-4">
             <motion.a
