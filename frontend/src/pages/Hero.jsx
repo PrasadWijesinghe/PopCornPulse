@@ -23,12 +23,12 @@ function Hero() {
       try {
         setLoading(true);
         const [popularData, topRatedData, upcomingData] = await Promise.all([
-          getPopularMovies(1), // Fetch only the first page
+          getPopularMovies(1), 
           getTopratedMovies(1),
           getUpcomingMovies(1),
         ]);
 
-        setPopularMovies(popularData.results.slice(0, 5)); // Limit to 5 movies
+        setPopularMovies(popularData.results.slice(0, 5)); 
         setTopRatedMovies(topRatedData.results.slice(0, 5));
         setUpcomingMovies(upcomingData.results.slice(0, 5));
         setLoading(false);
@@ -84,7 +84,7 @@ function Hero() {
           </div>
         )}
 
-        {/* Search Results Section */}
+       
         {moviesarys.length > 0 && (
           <div className="w-full max-w-7xl mt-12">
             <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-8">
@@ -104,7 +104,7 @@ function Hero() {
           </div>
         )}
 
-        {/* Popular Movies Section */}
+        
         <div className="w-full max-w-7xl mt-12">
           <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-8">
             Popular Movies
@@ -131,7 +131,7 @@ function Hero() {
           </div>
         </div>
 
-        {/* Top Rated Movies Section */}
+        
         <div className="w-full max-w-7xl mt-12">
           <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-8">
             Top Rated Movies
@@ -158,7 +158,7 @@ function Hero() {
           </div>
         </div>
 
-        {/* Upcoming Movies Section */}
+        
         <div className="w-full max-w-7xl mt-12">
           <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-8">
             Upcoming Movies
