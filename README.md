@@ -16,9 +16,8 @@
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React, Vite, TailwindCSS (or your preferred CSS framework)
+- **Frontend**: React, Vite, TailwindCSS 
 - **Backend**: Node.js, Express.js
-- **Database**: MongoDB (optional, if storing favorites/watchlist)
 - **API**: [TMDB API](https://www.themoviedb.org/documentation/api)
 
 ---
