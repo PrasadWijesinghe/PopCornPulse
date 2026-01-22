@@ -14,6 +14,8 @@ const MovieDetails = () => {
   const [similar, setSimilar] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [images, setImages] = useState([]);
+  const [videos, setVideos] = useState([]);
+  const [providers, setProviders] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [imagesLoading, setImagesLoading] = useState(true);
@@ -23,7 +25,7 @@ const MovieDetails = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const [movieRes, similarRes, reviewsRes, imagesRes] = await Promise.all([
+        const [movieRes, similarRes, reviewsRes, imagesRes, videosRes, providersRes] = await Promise.all([
           axios.get(`https://api.themoviedb.org/3/movie/${id}?language=en-US`, {
             headers: {
               accept: 'application/json',
@@ -48,11 +50,25 @@ const MovieDetails = () => {
               Authorization: `Bearer ${import.meta.env.VITE_TMDB_BEARER_TOKEN}`,
             },
           }),
+          axios.get(`https://api.themoviedb.org/3/movie/${id}/videos`, {
+            headers: {
+              accept: 'application/json',
+              Authorization: `Bearer ${import.meta.env.VITE_TMDB_BEARER_TOKEN}`,
+            },
+          }),
+          axios.get(`https://api.themoviedb.org/3/movie/${id}/watch/providers`, {
+            headers: {
+              accept: 'application/json',
+              Authorization: `Bearer ${import.meta.env.VITE_TMDB_BEARER_TOKEN}`,
+            },
+          }),
         ]);
         setMovie(movieRes.data);
         setSimilar(similarRes.data.results.slice(0, 8));
         setReviews(reviewsRes.data.results);
         setImages(imagesRes.data.backdrops.concat(imagesRes.data.posters).slice(0, 8));
+        setVideos(videosRes.data.results);
+        setProviders(providersRes.data);
         setLoading(false);
         setImagesLoading(false);
       } catch (err) {
@@ -272,6 +288,66 @@ const MovieDetails = () => {
             </ul>
           )}
         </motion.div>
+
+        {/* Video Section */}
+<motion.div
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ delay: 0.6, duration: 0.8 }}
+  className="w-full max-w-7xl mx-auto bg-black/40 rounded-3xl p-6 mb-12"
+>
+  <h2 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight mb-6">
+    Trailers & Videos
+  </h2>
+  {videos.length === 0 ? (
+    <div className="text-gray-300 text-base">No videos available.</div>
+  ) : (
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      {videos
+        .filter((video) => video.site === "YouTube")
+        .slice(0, 2) // Limit to 2 videos
+        .map((video) => (
+          <div key={video.id} className="aspect-w-16 aspect-h-9">
+            <iframe
+              src={`https://www.youtube.com/embed/${video.key}`}
+              title={video.name}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full rounded-lg shadow-lg"
+            ></iframe>
+          </div>
+        ))}
+    </div>
+  )}
+</motion.div>
+
+{/* Watch Providers Section */}
+<motion.div
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ delay: 1.2, duration: 0.8 }}
+  className="w-full max-w-7xl mx-auto bg-black/40 rounded-3xl p-6 mb-12"
+>
+  <h2 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight mb-6">
+    Where to Watch
+  </h2>
+  {providers.US ? (
+    <div className="flex flex-wrap gap-4">
+      {providers.US.flatrate?.map((provider) => (
+        <div key={provider.provider_id} className="flex flex-col items-center">
+          <img
+            src={`https://image.tmdb.org/t/p/w92${provider.logo_path}`}
+            alt={provider.provider_name}
+            className="w-16 h-16 rounded-full shadow-lg"
+          />
+          <span className="text-white text-sm mt-2">{provider.provider_name}</span>
+        </div>
+      ))}
+    </div>
+  ) : (
+    <div className="text-gray-300 text-base">No watch providers available.</div>
+  )}
+</motion.div>
       </motion.div>
       <FooterNav />
     </>

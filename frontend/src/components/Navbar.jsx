@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import logo from "../assets/Popcorn_logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,9 +16,10 @@ const Navbar = () => {
           whileHover={{ scale: 1.05 }}
           className="flex items-center gap-3"
         >
-          <span className="font-extrabold text-3xl md:text-4xl text-white tracking-tight">
+          <img src={logo} alt="Logo" className="h-10 w-10" />
+          <Link to="/"><span className="font-extrabold text-3xl md:text-4xl text-white tracking-tight">
             POPCORNPULSE
-          </span>
+          </span></Link>
         </motion.div>
 
         
@@ -96,13 +98,7 @@ const Navbar = () => {
         )}
 
         
-        <motion.a
-          href="#"
-          whileHover={{ scale: 1.05 }}
-          className="hidden md:block bg-gradient-to-r from-blue-600 to-blue-400 text-white px-6 py-2 rounded-full font-semibold shadow-md hover:shadow-lg transition-all duration-300 border border-white/20 text-lg"
-        >
-          Sign Up
-        </motion.a>
+        
       </div>
     </nav>
   );
